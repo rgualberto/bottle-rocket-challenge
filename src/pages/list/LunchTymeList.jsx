@@ -35,12 +35,15 @@ const LunchTymeList = props => {
     })
   }, []);
 
-  const openDetailView = () => {};
+  const openDetailView = (i) => {
+    window.alert(i);
+  };
 
   return (
     <div className="page">
       <PageHeader
         Title="Lunch Tyme"
+        onMapClick={() => {alert("Click a restaurant to see it's details!")}}
       />
 
       <div className="page__content">

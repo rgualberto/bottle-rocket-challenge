@@ -10,19 +10,27 @@ const PageHeader = props => {
 
   return (
     <div className="page__header">
-      <h1 className="page__heading">{Title}</h1>
+      <div className="page__header-contain">
+        <h1 className="page__heading">{Title}</h1>
 
-      {(onBackClick !== null && onBackClick !== undefined) &&
-        <div className="page__header-action page__header-action--left">
-          <button onClick={onBackClick}>back</button>
-        </div>
-      }
+        {(onBackClick !== null && onBackClick !== undefined) &&
+          <div className="page__header-action page__header-action--back">
+            <button onClick={onBackClick} className="page__icon-button">
+              {/* NOTE: Asset here doesn't match comps. Also would prefer svgs to normalize icons across app */}
+              <img src="/assets/images/ic_webBack@2x.png" />
+            </button>
+          </div>
 
-      {(onMapClick !== null && onMapClick !== undefined) && 
-        <div className="page__header-action page__header-action--right">
-          <button onClick={onBackClick}>map</button>
-        </div>
-      }
+        }
+
+        {(onMapClick !== null && onMapClick !== undefined) &&
+          <div className="page__header-action page__header-action--map">
+            <button onClick={onMapClick} className="page__icon-button">
+              <img src="/assets/images/icon_map@2x.png" />
+            </button>
+          </div>
+        }
+      </div>
     </div>
   );
 }

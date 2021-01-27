@@ -30,11 +30,54 @@ h2 {
 .page__header {
   background: $lime-green;
   color: $white;
-  padding: 24px 10px $mobileGutterSpacing;
+  padding: 24px 0 6px;
+}
+
+.page__header-contain {
+  position: relative;
+  margin: auto;
+  max-width: 1200px;
 }
 
 .page__heading {
   margin: 0;
   font-weight: normal;
   text-align: center;
+  line-height: 36px;
+}
+
+.page__header-action {
+  display: block;
+  position: absolute;
+  bottom: 0;
+
+  &--back {
+    bottom: 6px;
+    left: $mobileGutterSpacing;
+    width: 26px;
+
+    img {
+      height: 26px
+    }
+  }
+
+  &--map {
+    right: $mobileGutterSpacing;
+    width: 36px;
+  }
+
+  button:focus {
+    outline-color: $white;
+  }
+}
+
+.page__icon-button {
+  display: block;
+  border: none;
+  background: none;
+  padding: 0;
+
+  img {
+    display: block;
+  }
 }
