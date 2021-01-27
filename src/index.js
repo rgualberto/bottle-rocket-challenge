@@ -3,15 +3,13 @@ import {render} from 'react-dom';
 import store from './redux/store';
 import {Provider} from 'react-redux';
 
-import BpComponent from './components/bp-component/BpComponent.jsx';
+import LunchTymeList from './pages/list/LunchTymeList.jsx';
+
+// Normally would go in a PageWrap component
+import './pages/page.scss';
 
 render(
   <Provider store={store}>
-    <BpComponent
-      buttonText={"Toggle Title"}
-      headingTitle={"Boilerplate"}
-      subHeading={"Start with something rather than nothing!"}
-      titleToggleText={"Base Dish"}
-    />
+    <LunchTymeList />
   </Provider>, document.getElementById('app')
 );
