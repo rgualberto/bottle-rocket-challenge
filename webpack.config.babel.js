@@ -71,12 +71,12 @@ module.exports = (env = {}) => {
         appMountIds: ['app'],
         mobile: true
       }),
-      // new CopyWebpackPlugin([
-      //   {
-      //     from: 'assets/**/*.*',
-      //     to: '.'
-      //   },
-      // ]),
+      new CopyWebpackPlugin([
+        {
+          from: 'assets/**/*.*',
+          to: '.'
+        },
+      ]),
     ],
 
     mode: isProd ? 'production' : 'development',

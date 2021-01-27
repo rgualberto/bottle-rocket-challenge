@@ -1,4 +1,48 @@
+@import '../../helpers/styles/globals.scss';
 
 .restaurant-card {
-  
+  display: block;
+  padding: 0;
+  border: none;
+  text-align: left;
+  position: relative;
+
+  &:focus {
+    outline-color: $lime-green;
+  }
+}
+
+.restaurant-card__image {
+  display: block;
+}
+
+.restaurant-card__info-wrap {
+  // allow image to set container's height
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  // NOTE: normally I would use a gradient here but the asset was provided so I used it.
+  background: url("/assets/images/cellGradientBackground@2x.png");
+  background-size: contain;
+}
+
+.restaurant-card__info {
+  padding: 6px $mobileGutterSpacing;
+  color: $white;
+
+  h2 {
+    margin: 0 0 6px;
+  }
+
+  span {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
 }

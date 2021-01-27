@@ -20,9 +20,11 @@ const RestaurantCard = props => {
         src={ImageURL}
       />
 
-      <div className="restaurant-card__info">
-        <h2>{Name}</h2>
-        <span>{Category}</span>
+    <div className="restaurant-card__info-wrap">
+        <div className="restaurant-card__info">
+          <h2>{Name}</h2>
+          <span>{Category}</span>
+        </div>
       </div>
     </button>
   );
