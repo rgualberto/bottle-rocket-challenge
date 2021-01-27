@@ -5,6 +5,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {setRestaurants} from './lunchTymeReducer';
 import {request} from '../../helpers/loader/loader';
 
+import PageHeader from '../../components/page-header/PageHeader.jsx';
+
 const LunchTymeList = props => {
   // const {} = props;
 
@@ -34,9 +36,9 @@ const LunchTymeList = props => {
 
   return (
     <div className="lunchTymeList">
-      <div className="page__header">
-        <h1 className="page__heading">Lunch Tyme</h1>
-      </div>
+      <PageHeader
+        Title="Lunch Tyme"
+      />
 
       {error !== "" &&
         <div className="page__error">{error}</div>
