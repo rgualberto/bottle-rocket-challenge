@@ -7,6 +7,7 @@ import {request} from '@helpers/loader/loader';
 
 import PageHeader from '@components/page-header/PageHeader.jsx';
 import RestaurantCard from '@components/restaurant-card/RestaurantCard.jsx';
+import LunchTymeDetails from '@pages/detail/LunchTymeDetails.jsx';
 
 const LunchTymeList = props => {
   // const {} = props;
@@ -70,6 +71,12 @@ const LunchTymeList = props => {
             </ul>
           }
         </div>
+
+          {restaurants.length !== 0 &&
+            <LunchTymeDetails
+              restaurant={restaurants[0]}
+            />
+          }
         </div>
       </div>
     </div>
