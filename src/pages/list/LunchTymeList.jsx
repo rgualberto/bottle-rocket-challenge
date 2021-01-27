@@ -3,10 +3,10 @@ import React, {useState, useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import {setRestaurants} from './lunchTymeReducer';
-import {request} from '../../helpers/loader/loader';
+import {request} from '@helpers/loader/loader';
 
-import PageHeader from '../../components/page-header/PageHeader.jsx';
-import RestaurantCard from '../../components/restaurant-card/RestaurantCard.jsx';
+import PageHeader from '@components/page-header/PageHeader.jsx';
+import RestaurantCard from '@components/restaurant-card/RestaurantCard.jsx';
 
 const LunchTymeList = props => {
   // const {} = props;

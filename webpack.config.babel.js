@@ -45,6 +45,15 @@ module.exports = (env = {}) => {
       }
     },
 
+    resolve: {
+      alias: {
+        assets: path.resolve(__dirname, 'src/assets/'),
+        components: path.resolve(__dirname, 'src/components/'),
+        helpers: path.resolve(__dirname, 'src/helpers/'),
+        pages: path.resolve(__dirname, 'src/pages/')
+      }
+    },
+
     plugins: [
       new webpack.DefinePlugin({
         "process.env": {

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {lunchTymeReducer} from '../pages/list/lunchTymeReducer';
+import {lunchTymeReducer} from '@pages/list/lunchTymeReducer';
 
 const reducers = combineReducers({
   lunchTymeReducer

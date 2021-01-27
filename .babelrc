@@ -4,6 +4,18 @@
     "@babel/preset-react"
   ],
   "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@assets": "./src/assets",
+          "@components": "./src/components",
+          "@helpers": "./src/helpers",
+          "@pages": "./src/pages"
+        }
+      }
+    ],
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-do-expressions",
     "@babel/plugin-proposal-export-default-from",
