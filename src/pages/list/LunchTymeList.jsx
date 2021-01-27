@@ -6,6 +6,7 @@ import {setRestaurants} from './lunchTymeReducer';
 import {request} from '../../helpers/loader/loader';
 
 import PageHeader from '../../components/page-header/PageHeader.jsx';
+import RestaurantCard from '../../components/restaurant-card/RestaurantCard.jsx';
 
 const LunchTymeList = props => {
   // const {} = props;
@@ -34,6 +35,8 @@ const LunchTymeList = props => {
     })
   }, []);
 
+  const openDetailView = () => {};
+
   return (
     <div className="lunchTymeList">
       <PageHeader
@@ -47,7 +50,14 @@ const LunchTymeList = props => {
       {restaurants.length !== 0 &&
         <ul className="lunchTymeList__restaurants">
           {restaurants.map((r, i) => (
-            <li key={i}>{r.name}</li>
+            <li key={i} className="lunchTymeList__restaurant">
+              <RestaurantCard
+                Name={r.name}
+                Category={r.category}
+                ImageURL={r.backgroundImageURL}
+                onClick={openDetailView.bind(null, i)}
+              />
+            </li>
           ))}
         </ul>
       }
