@@ -19,6 +19,9 @@
 
 .restaurant-card__image {
   display: block;
+
+  // Can cap height to match comp but then it wouldnt fill available space on large mobile screens
+  // height: 180px;
 }
 
 .restaurant-card__info-wrap {

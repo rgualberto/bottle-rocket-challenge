@@ -46,8 +46,9 @@ const LunchTymeList = props => {
         onMapClick={() => {alert("Click a restaurant to see it's details!")}}
       />
 
-      <div className="page__content">
-        <div className="lunchTymeList">
+    <div className="page__content-wrap">
+        <div className="page__content">
+          <div className="lunchTymeList">
 
 
           {error !== "" &&
@@ -68,6 +69,7 @@ const LunchTymeList = props => {
               ))}
             </ul>
           }
+        </div>
         </div>
       </div>
     </div>
