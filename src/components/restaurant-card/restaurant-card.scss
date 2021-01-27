@@ -3,9 +3,14 @@
 .restaurant-card {
   display: block;
   padding: 0;
+  margin: auto;
   border: none;
   text-align: left;
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &:focus {
     outline-color: $lime-green;

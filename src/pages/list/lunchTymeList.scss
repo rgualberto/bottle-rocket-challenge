@@ -1,7 +1,20 @@
+@import '~/helpers/styles/globals.scss';
+
 .lunchTymeList {}
 
 .lunchTymeList__restaurants {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  @include breakpoint($medium) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.lunchTymeList__restaurant {
+  @include breakpoint($medium) {
+    width: 50%;
+  }
 }

@@ -38,29 +38,35 @@ const LunchTymeList = props => {
   const openDetailView = () => {};
 
   return (
-    <div className="lunchTymeList">
+    <div className="page">
       <PageHeader
         Title="Lunch Tyme"
       />
 
-      {error !== "" &&
-        <div className="page__error">{error}</div>
-      }
+      <div className="page__content">
+        <div className="lunchTymeList">
 
-      {restaurants.length !== 0 &&
-        <ul className="lunchTymeList__restaurants">
-          {restaurants.map((r, i) => (
-            <li key={i} className="lunchTymeList__restaurant">
-              <RestaurantCard
-                Name={r.name}
-                Category={r.category}
-                ImageURL={r.backgroundImageURL}
-                onClick={openDetailView.bind(null, i)}
-              />
-            </li>
-          ))}
-        </ul>
-      }
+
+          {error !== "" &&
+            <div className="page__error">{error}</div>
+          }
+
+          {restaurants.length !== 0 &&
+            <ul className="lunchTymeList__restaurants">
+              {restaurants.map((r, i) => (
+                <li key={i} className="lunchTymeList__restaurant">
+                  <RestaurantCard
+                    Name={r.name}
+                    Category={r.category}
+                    ImageURL={r.backgroundImageURL}
+                    onClick={openDetailView.bind(null, i)}
+                  />
+                </li>
+              ))}
+            </ul>
+          }
+        </div>
+      </div>
     </div>
   );
 }
