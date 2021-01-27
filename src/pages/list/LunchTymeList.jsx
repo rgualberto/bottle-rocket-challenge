@@ -34,13 +34,13 @@ const LunchTymeList = props => {
 
   return (
     <div className="lunchTymeList">
+      <div className="page__header">
+        <h1 className="page__heading">Lunch Tyme</h1>
+      </div>
+
       {error !== "" &&
         <div className="page__error">{error}</div>
       }
-
-      <div className="lunchTymeList__header">
-        <h1 className="lunchTymeList__heading">Lunch Tyme</h1>
-      </div>
 
       {restaurants.length !== 0 &&
         <ul className="lunchTymeList__restaurants">

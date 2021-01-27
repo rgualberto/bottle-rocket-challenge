@@ -1,4 +1,21 @@
+@import '../helpers/styles/globals.scss';
+@import '../helpers/styles/normalize.scss';
+
 body {
-  font-family: "Avenir Next", "Avenir", sans-serif, serif;
+  font-family: "Avenir Next Regular", "Avenir Next", "Avenir", sans-serif, serif;
   font-size: 16px;
+}
+
+.page__header {
+  background: $lime-green;
+  color: $white;
+  padding: 24px 10px $mobileGutterSpacing;
+}
+
+.page__heading {
+  margin: 0;
+  font-family: $fontFamilyBold;
+  font-size: 17px;
+  font-weight: normal;
+  text-align: center;
 }

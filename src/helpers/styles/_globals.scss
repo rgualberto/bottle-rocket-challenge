@@ -1,0 +1,34 @@
+// colors
+$lime-green: #43E895;
+
+// shades
+$light-gray: #dcdcdc;
+$dark-gray: #737373;
+$white: #ffffff;
+$black: #000000;
+
+$small: 450px; // 0-450 most phones
+$medium: 768px; // 450-768 phones in landscape and very small tablets
+$large:  1100px; // 768-1100 tablets in portrait or landscape
+$x-large:  1300px;
+$xx-large:  1500px;
+
+// fonts
+$fontFamilyBold: #{"Avenir Next Demi Bold", "Avenir Next Regular", "Avenir Next", "Avenir", sans-serif, serif};
+
+// spacing
+$mobileGutterSpacing: 12px;
+
+@mixin breakpoint($breakpoint) {
+  @media screen and (min-width: $breakpoint), print {
+    @content;
+  }
+}
+
+@mixin breakpoint-below($breakpoint) {
+  $breakpoint: ($breakpoint - 1px);
+
+  @media screen and (max-width: $breakpoint), print {
+    @content;
+  }
+}
