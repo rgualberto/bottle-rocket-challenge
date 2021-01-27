@@ -76,7 +76,7 @@ module.exports = (env = {}) => {
         // inject: false, // webpack 5 wants this to be true
         template: require('html-webpack-template'),
         filename: 'index.html',
-        title: 'Redux BP',
+        title: 'Lunch Tyme',
         appMountIds: ['app'],
         mobile: true
       }),
