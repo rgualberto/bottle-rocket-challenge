@@ -5,13 +5,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {toggleText} from './bpReducer';
 import {request} from '../../helpers/loader/loader';
 
-const BpComponent = props => {
-  const {
-    buttonText,
-    headingTitle,
-    subHeading,
-    titleToggleText
-  } = props;
+const LunchTymeList = props => {
+  // const {} = props;
 
   const dispatch = useDispatch();
   const toggle = useCallback(
@@ -35,26 +30,14 @@ const BpComponent = props => {
   }, []);
 
   return (
-    <div className="bp">
-      <h1 className="bp__heading">{title}</h1>
-      <p className="bp__subheading">{subHeading}</p>
-      <button
-        className="bp__text-toggle"
-        onClick={toggle}
-      >
-        {buttonText}
-      </button>
+    <div className="lunchTymeList">
+      <div className="lunchTymeList__header">
+        <h1 className="lunchTymeList__heading">Lunch Tyme</h1>
+      </div>
     </div>
   );
 }
 
-BpComponent.propTypes = {
-  buttonText: PropTypes.string,
-  headingTitle: PropTypes.string,
-  subHeading: PropTypes.string,
-  titleToggleText: PropTypes.string,
-  toggleState: PropTypes.bool,
-  toggleText: PropTypes.func
-};
+LunchTymeList.propTypes = {};
 
-export default BpComponent;
+export default LunchTymeList;

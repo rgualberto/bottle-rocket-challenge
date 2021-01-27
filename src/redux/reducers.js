@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import {bpReducer} from '../components/bp-component/bpReducer';
+import {lunchTymeReducer} from '../components/list/lunchTymeReducer';
 
 const reducers = combineReducers({
-  bpReducer
+  lunchTymeReducer
 });
 
 export default reducers;
