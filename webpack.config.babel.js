@@ -12,6 +12,9 @@ import TerserPlugin from 'terser-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 // import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 
+// should probably live in a general config file
+const googleMapsApiKey = "AIzaSyAirMRbrmnyy7HjO9GVVYHaGUdQSy069Ds";
+
 module.exports = (env = {}) => {
   const isProd = env.production;
   const NODE_ENV = isProd ? JSON.stringify("production") : JSON.stringify("development");
@@ -78,7 +81,14 @@ module.exports = (env = {}) => {
         filename: 'index.html',
         title: 'Lunch Tyme',
         appMountIds: ['app'],
-        mobile: true
+        mobile: true,
+        scripts: [
+          {
+            src: `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}`,
+            async: true,
+            defer: true
+          }
+        ]
       }),
       new CopyWebpackPlugin([
         {

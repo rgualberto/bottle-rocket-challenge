@@ -2,6 +2,7 @@ import _ from 'lodash';
 import './lunchTymeDetails.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Map from '@components/map/Map.jsx';
 
 const LunchTymeDetails = props => {
   const {restaurant} = props;
@@ -11,7 +12,9 @@ const LunchTymeDetails = props => {
 
   return (
     <div className="lunchTymeDetails">
-      <div className="lunchTymeDetails__map">map here</div>
+      <div className="lunchTymeDetails__map">
+        <Map/>
+      </div>
 
       <div className="lunchTymeDetails__map-label">
         <h2>{restaurant.name}</h2>
