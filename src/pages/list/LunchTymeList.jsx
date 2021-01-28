@@ -10,20 +10,31 @@ import PageHeader from '@components/page-header/PageHeader.jsx';
 import RestaurantCard from '@components/restaurant-card/RestaurantCard.jsx';
 import LunchTymeDetails from '@pages/detail/LunchTymeDetails.jsx';
 import Modal from '@components/modal/Modal.jsx';
+import Map from '@components/map/Map.jsx';
 
 const LunchTymeList = props => {
-  // const {} = props;
-
   const dispatch = useDispatch();
   const restaurants = useSelector(state => state.lunchTymeReducer.restaurants);
 
   const [error, setError] = useState("");
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false);
   const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
   const openDetailView = (i) => {
-    // set active restaurant and open
+    // set active restaurant
     setActiveRestaurantIndex(i)
-    setDetailsOpen(true);
+
+    // shouldnt be possible given no restaurant is clickable while map modal is open
+    // provide safety net anyway
+    if (mapOpen) {
+      setMapOpen(false);
+      // give modal a chance to close to reinit map
+      setTimeout(() => {
+        setDetailsOpen(true);
+      }, 400)
+    } else {
+      setDetailsOpen(true);
+    }
   };
 
   // fetch data
@@ -45,13 +56,31 @@ const LunchTymeList = props => {
     })
   }, []);
 
+  const mapLocations = restaurants.map(r => ({
+    title: r.name,
+    ...r.location
+  }));
+
   return (
     <div className="page">
       <PageHeader
         Title="Lunch Tyme"
-        onMapClick={() => {alert("Click a restaurant to see it's details!")}}
+        onMapClick={() => {
+          if (detailsOpen) {
+            setDetailsOpen(false);
+            // give modal a chance to close to reinit map
+            setTimeout(() => {
+              setMapOpen(true);
+            }, 400)
+          } else {
+            setMapOpen(true);
+          }
+        }}
         {...detailsOpen && {
           onBackClick: setDetailsOpen.bind(null, false)
+        }}
+        {...mapOpen && {
+          onBackClick: setMapOpen.bind(null, false)
         }}
       />
 
@@ -88,6 +117,19 @@ const LunchTymeList = props => {
           <LunchTymeDetails
             restaurant={restaurants[activeRestaurantIndex]}
           />
+        </Modal>
+
+        <Modal
+          open={mapOpen}
+          onRequestClose={setMapOpen.bind(null, false)}
+        >
+          {restaurants.length !== 0 &&
+            <Map
+              locations={mapLocations}
+              centerLat={restaurants[0].location.lat}
+              centerLng={restaurants[0].location.lng}
+            />
+          }
         </Modal>
       </div>
     </div>

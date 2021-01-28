@@ -1,24 +1,35 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import './map.scss';
+import classnames from 'classnames';
 
 const Map = props => {
-  // const {} = props;
   useEffect(() => {
-    const centerCoordinates = { lat: props.centerLat, lng: props.centerLng };
-    // current centered coordinates
+    // init map
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 14,
-      center: centerCoordinates,
-      streetViewControl: false
+      zoom: props.locations.length > 1 ? 12 : 14,
+      streetViewControl: false,
+      center: {
+        lat: props.centerLat,
+        lng: props.centerLng
+      }
     });
+
+    /***** Set Map Markers ******/
+    let previousInfoWindow = false;
     const setMarkers = () => {
       props.locations.forEach(location => {
+
         setTimeout(function() {
+          // when using a map func on formattedAddress commas are added in wierd places.
+          // opted to display individually
+          const {formattedAddress} = location;
           const contentString = `
            <div>
-             <h3>${location.title}</h3>
-             <p>some details</p>
+            <h3>${location.title}</h3>
+              ${formattedAddress[0] !== undefined ? formattedAddress[0] + "<br/>" : ""}
+              ${formattedAddress[1] !== undefined ? formattedAddress[1] + "<br/>" : ""}
+              ${formattedAddress[2] !== undefined ? formattedAddress[2] + "<br/>" : ""}
            </div>
           `;
           const infowindow = new google.maps.InfoWindow({
@@ -32,6 +43,10 @@ const Map = props => {
           });
 
           marker.addListener("click", () => {
+            if (previousInfoWindow) {
+              previousInfoWindow.close();
+            }
+            previousInfoWindow = infowindow;
             infowindow.open(map, marker);
           });
         }, 200);
@@ -39,6 +54,7 @@ const Map = props => {
     }
 
 
+    // delay marker animation when multiple are being shown
     if (props.locations.length > 1) {
       setTimeout(() => {
         setMarkers();
@@ -46,12 +62,15 @@ const Map = props => {
     } else {
       setMarkers();
     }
-
-
   }, []);
 
+  const mapClassNames = classnames({
+    "map": true,
+    "map--large": props.locations.length > 1
+  });
+
   return (
-    <div className="map" id="map" />
+    <div className={mapClassNames} id="map" />
   );
 }
 
@@ -70,7 +89,7 @@ Map.propTypes = {
       postalCode: PropTypes.string,
       state: PropTypes.string
     })
-  ),
+  ).isRequired,
   centerLat: PropTypes.number,
   centerLng: PropTypes.number
 };
