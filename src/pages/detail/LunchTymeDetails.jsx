@@ -19,7 +19,7 @@ const LunchTymeDetails = props => {
       </div>
 
       {formattedAddress.length > 0 &&
-        <address className="lunchTymeDetails__address">
+        <address className="lunchTymeDetails__detail lunchTymeDetails__address">
           {formattedAddress.map((addressLine, i) => (
             <div key={i}>{addressLine}</div>
           ))}
@@ -27,14 +27,14 @@ const LunchTymeDetails = props => {
       }
 
       {formattedPhone.length > 0 &&
-        <div className="lunchTymeDetails__phone">
+        <div className="lunchTymeDetails__detail lunchTymeDetails__phone">
           <span>{formattedPhone}</span>
         </div>
       }
 
       {twitter.length > 0 &&
-        <div className="lunchTymeDetails__social">
-          <span>@{twitter}</span>
+        <div className="lunchTymeDetails__detail lunchTymeDetails__social">
+          <a href={`https://twitter.com/${twitter}`} target="_blank">@{twitter}</a>
         </div>
       }
 

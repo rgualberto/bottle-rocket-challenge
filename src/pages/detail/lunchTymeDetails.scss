@@ -1,3 +1,40 @@
 @import '~/helpers/styles/globals.scss';
 
-.lunchTymeDetails {}
+.lunchTymeDetails {
+  address {
+    font-style: normal;
+  }
+}
+
+.lunchTymeDetails__map-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: $white;
+  background: $google-green;
+  height: 60px;
+  padding: 0 $mobileGutterSpacing;
+  margin-bottom: 16px;
+
+  h2 {
+    margin: 0 0 6px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+}
+
+.lunchTymeDetails__detail {
+  padding: 0 $mobileGutterSpacing;
+  & + & {
+    margin-top: 26px;
+  }
+}
+
+.lunchTymeDetails__social {
+  a {
+    text-decoration: none;
+    color: $black;
+  }
+}
