@@ -1,0 +1,88 @@
+@import '~helpers/styles/globals';
+
+$maxDrawerWidth: 450px;
+$modalAnimateDistance: 40px;
+$shortAnimationTime: 0.35s;
+
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 130;
+}
+
+.modal__body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: $white;
+  right: 0;
+  z-index: 102;
+  transform: translateX($maxDrawerWidth);
+  animation: fade-in-content-drawer-right $shortAnimationTime forwards 0.2s;
+
+  @include breakpoint($medium) {
+    max-height: none;
+    min-width: auto;
+    max-width: $maxDrawerWidth;
+    width: $maxDrawerWidth;
+  }
+
+  .modal--closing & {
+    animation: fade-out-content-drawer-right $shortAnimationTime backwards 0s;
+  }
+}
+
+.modal__overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba($dark-gray-violet, 0.5);
+  opacity: 0;
+  z-index: 101;
+  animation: fade-in-modal $shortAnimationTime 0s forwards;
+  animation-iteration-count: 1;
+  cursor: pointer;
+
+  .modal--closing & {
+    animation: fade-out-modal $shortAnimationTime backwards 0.2s;
+    animation-iteration-count: 1;
+  }
+}
+
+/************ animations ************/
+
+@keyframes fade-in-modal {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out-modal {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fade-in-content-drawer-right {
+  0%   {
+    opacity: 0;
+    transform: translateX($maxDrawerWidth);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out-content-drawer-right {
+  0%   {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX($maxDrawerWidth);
+  }
+}

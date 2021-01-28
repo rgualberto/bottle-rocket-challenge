@@ -32,10 +32,20 @@ h2 {
 
 .page__content-wrap {
   flex: 1 auto;
+  position: relative;
+}
+
+.page__content-wrap-inner {
   overflow-y: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .page__content {
+  position: relative;
   max-width: 1200px;
   margin: auto;
 }
@@ -89,6 +99,7 @@ h2 {
   border: none;
   background: none;
   padding: 0;
+  cursor: pointer;
 
   img {
     display: block;

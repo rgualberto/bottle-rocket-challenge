@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import {setRestaurants} from './lunchTymeReducer';
 import {request} from '@helpers/loader/loader';
+import classnames from 'classnames';
 
 import PageHeader from '@components/page-header/PageHeader.jsx';
 import RestaurantCard from '@components/restaurant-card/RestaurantCard.jsx';
 import LunchTymeDetails from '@pages/detail/LunchTymeDetails.jsx';
+import Modal from '@components/modal/Modal.jsx';
 
 const LunchTymeList = props => {
   // const {} = props;
@@ -16,6 +18,12 @@ const LunchTymeList = props => {
   const restaurants = useSelector(state => state.lunchTymeReducer.restaurants);
 
   const [error, setError] = useState("");
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const openDetailView = (i) => {
+    // window.alert(i);
+    // set active restaurant and open
+    setDetailsOpen(true);
+  };
 
   // fetch data
   useEffect(() => {
@@ -36,48 +44,50 @@ const LunchTymeList = props => {
     })
   }, []);
 
-  const openDetailView = (i) => {
-    window.alert(i);
-  };
-
   return (
     <div className="page">
       <PageHeader
         Title="Lunch Tyme"
         onMapClick={() => {alert("Click a restaurant to see it's details!")}}
+        {...detailsOpen && {
+          onBackClick: setDetailsOpen.bind(null, false)
+        }}
       />
 
-    <div className="page__content-wrap">
-        <div className="page__content">
-          <div className="lunchTymeList">
+      <div className="page__content-wrap">
+        <div className="page__content-wrap-inner">
+          <div className="page__content">
+              <div className="lunchTymeList">
+                {error !== "" &&
+                  <div className="page__error">{error}</div>
+                }
 
-
-          {error !== "" &&
-            <div className="page__error">{error}</div>
-          }
-
-          {restaurants.length !== 0 &&
-            <ul className="lunchTymeList__restaurants">
-              {restaurants.map((r, i) => (
-                <li key={i} className="lunchTymeList__restaurant">
-                  <RestaurantCard
-                    Name={r.name}
-                    Category={r.category}
-                    ImageURL={r.backgroundImageURL}
-                    onClick={openDetailView.bind(null, i)}
-                  />
-                </li>
-              ))}
-            </ul>
-          }
+                {restaurants.length !== 0 &&
+                  <ul className="lunchTymeList__restaurants">
+                    {restaurants.map((r, i) => (
+                      <li key={i} className="lunchTymeList__restaurant">
+                        <RestaurantCard
+                          Name={r.name}
+                          Category={r.category}
+                          ImageURL={r.backgroundImageURL}
+                          onClick={openDetailView.bind(null, i)}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                }
+              </div>
+          </div>
         </div>
 
-          {restaurants.length !== 0 &&
-            <LunchTymeDetails
-              restaurant={restaurants[0]}
-            />
-          }
-        </div>
+        <Modal
+          open={detailsOpen}
+          onRequestClose={setDetailsOpen.bind(null, false)}
+        >
+          <LunchTymeDetails
+            restaurant={restaurants[0]}
+          />
+        </Modal>
       </div>
     </div>
   );
