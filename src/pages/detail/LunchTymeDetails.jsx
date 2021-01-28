@@ -1,9 +1,13 @@
+import _ from 'lodash';
 import './lunchTymeDetails.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const LunchTymeDetails = props => {
   const {restaurant} = props;
+  const formattedAddress = _.get(restaurant, 'location.formattedAddress', []);
+  const formattedPhone = _.get(restaurant, 'contact.formattedPhone', "");
+  const twitter = _.get(restaurant, 'contact.twitter', "");
 
   return (
     <div className="lunchTymeDetails">
@@ -14,19 +18,26 @@ const LunchTymeDetails = props => {
         <span>{restaurant.category}</span>
       </div>
 
-      <address className="lunchTymeDetails__address">
-        {restaurant.location.formattedAddress.map((addressLine, i) => (
-          <div key={i}>{addressLine}</div>
-        ))}
-      </address>
+      {formattedAddress.length > 0 &&
+        <address className="lunchTymeDetails__address">
+          {formattedAddress.map((addressLine, i) => (
+            <div key={i}>{addressLine}</div>
+          ))}
+        </address>
+      }
 
-      <div className="lunchTymeDetails__phone">
-        <span>{restaurant.contact.formattedPhone}</span>
-      </div>
+      {formattedPhone.length > 0 &&
+        <div className="lunchTymeDetails__phone">
+          <span>{formattedPhone}</span>
+        </div>
+      }
 
-      <div className="lunchTymeDetails__social">
-        <span>@{restaurant.contact.twitter}</span>
-      </div>
+      {twitter.length > 0 &&
+        <div className="lunchTymeDetails__social">
+          <span>@{twitter}</span>
+        </div>
+      }
+
     </div>
   );
 }

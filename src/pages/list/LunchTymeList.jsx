@@ -19,9 +19,10 @@ const LunchTymeList = props => {
 
   const [error, setError] = useState("");
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
   const openDetailView = (i) => {
-    // window.alert(i);
     // set active restaurant and open
+    setActiveRestaurantIndex(i)
     setDetailsOpen(true);
   };
 
@@ -85,7 +86,7 @@ const LunchTymeList = props => {
           onRequestClose={setDetailsOpen.bind(null, false)}
         >
           <LunchTymeDetails
-            restaurant={restaurants[0]}
+            restaurant={restaurants[activeRestaurantIndex]}
           />
         </Modal>
       </div>
