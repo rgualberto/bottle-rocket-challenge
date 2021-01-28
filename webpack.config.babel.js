@@ -12,6 +12,8 @@ import TerserPlugin from 'terser-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 // import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 
+import WebpackPwaManifest from 'webpack-pwa-manifest';
+
 // should probably live in a general config file
 const googleMapsApiKey = "AIzaSyAirMRbrmnyy7HjO9GVVYHaGUdQSy069Ds";
 
@@ -70,7 +72,7 @@ module.exports = (env = {}) => {
           chunkFilename: "[name].css?v=[hash]"
         }),
         new CompressionPlugin({
-          filename: "[path][base].gz[query]",
+          filename: "[path].gz[query]",
           algorithm: "gzip",
           test: /\.(js|css)(\?.*)?$/
         })
@@ -96,6 +98,23 @@ module.exports = (env = {}) => {
           to: '.'
         },
       ]),
+
+      new WebpackPwaManifest({
+        name: 'Lunch Tyme',
+        short_name: 'LunchTyme',
+        start_url: "/",
+        description: 'One stop shop for lunch!',
+        background_color: '#ffffff',
+        theme_color: '#43E895',
+        orientation: "portrait-primary",
+        // crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+        icons: [
+          {
+            src: path.resolve('src/assets/images/icon_map@2x.png'),
+            size: "60x60"
+          }
+        ]
+      })
     ],
 
     mode: isProd ? 'production' : 'development',
