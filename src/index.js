@@ -5,6 +5,13 @@ import {Provider} from 'react-redux';
 
 import LunchTymeList from '@pages/list/LunchTymeList.jsx';
 
+// register service worker
+if ("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js");
+  });
+}
+
 // Normally would go in a PageWrap component
 import '@pages/page.scss';
 

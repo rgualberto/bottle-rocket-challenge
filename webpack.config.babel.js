@@ -13,6 +13,7 @@ import CompressionPlugin from 'compression-webpack-plugin';
 // import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 
 import WebpackPwaManifest from 'webpack-pwa-manifest';
+import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 
 // should probably live in a general config file
 const googleMapsApiKey = "AIzaSyAirMRbrmnyy7HjO9GVVYHaGUdQSy069Ds";
@@ -98,7 +99,6 @@ module.exports = (env = {}) => {
           to: '.'
         },
       ]),
-
       new WebpackPwaManifest({
         name: 'Lunch Tyme',
         short_name: 'LunchTyme',
@@ -107,6 +107,7 @@ module.exports = (env = {}) => {
         background_color: '#ffffff',
         theme_color: '#43E895',
         orientation: "portrait-primary",
+        publicPath: '/',
         // crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
         icons: [
           {
@@ -114,7 +115,12 @@ module.exports = (env = {}) => {
             size: "60x60"
           }
         ]
+      }),
+      new WorkboxWebpackPlugin.InjectManifest({
+        swSrc: "./helpers/service-workers/service-worker.js",
+        swDest: "service-worker.js"
       })
+      // new WorkboxWebpackPlugin.GenerateSW()
     ],
 
     mode: isProd ? 'production' : 'development',
