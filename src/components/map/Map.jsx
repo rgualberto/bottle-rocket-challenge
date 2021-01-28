@@ -3,6 +3,44 @@ import PropTypes from 'prop-types';
 import './map.scss';
 import classnames from 'classnames';
 
+/***** Set Map Markers ******/
+let previousInfoWindow = false;
+const setMarkers = (locations, map) => {
+  locations.forEach(location => {
+
+    setTimeout(function() {
+      // when using a map func on formattedAddress commas are added in wierd places.
+      // opted to display individually
+      const {formattedAddress} = location;
+      const contentString = `
+       <div>
+        <h3>${location.title}</h3>
+          ${formattedAddress[0] !== undefined ? formattedAddress[0] + "<br/>" : ""}
+          ${formattedAddress[1] !== undefined ? formattedAddress[1] + "<br/>" : ""}
+          ${formattedAddress[2] !== undefined ? formattedAddress[2] + "<br/>" : ""}
+       </div>
+      `;
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+      const marker = new google.maps.Marker({
+        position: { lat: location.lat, lng: location.lng },
+        map: map,
+        animation: google.maps.Animation.DROP,
+        title: location.title
+      });
+
+      marker.addListener("click", () => {
+        if (previousInfoWindow) {
+          previousInfoWindow.close();
+        }
+        previousInfoWindow = infowindow;
+        infowindow.open(map, marker);
+      });
+    }, 200);
+  });
+}
+
 const Map = props => {
   useEffect(() => {
     // init map
@@ -15,52 +53,13 @@ const Map = props => {
       }
     });
 
-    /***** Set Map Markers ******/
-    let previousInfoWindow = false;
-    const setMarkers = () => {
-      props.locations.forEach(location => {
-
-        setTimeout(function() {
-          // when using a map func on formattedAddress commas are added in wierd places.
-          // opted to display individually
-          const {formattedAddress} = location;
-          const contentString = `
-           <div>
-            <h3>${location.title}</h3>
-              ${formattedAddress[0] !== undefined ? formattedAddress[0] + "<br/>" : ""}
-              ${formattedAddress[1] !== undefined ? formattedAddress[1] + "<br/>" : ""}
-              ${formattedAddress[2] !== undefined ? formattedAddress[2] + "<br/>" : ""}
-           </div>
-          `;
-          const infowindow = new google.maps.InfoWindow({
-            content: contentString,
-          });
-          const marker = new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            title: location.title
-          });
-
-          marker.addListener("click", () => {
-            if (previousInfoWindow) {
-              previousInfoWindow.close();
-            }
-            previousInfoWindow = infowindow;
-            infowindow.open(map, marker);
-          });
-        }, 200);
-      });
-    }
-
-
     // delay marker animation when multiple are being shown
     if (props.locations.length > 1) {
       setTimeout(() => {
-        setMarkers();
+        setMarkers(props.locations, map);
       }, 350);
     } else {
-      setMarkers();
+      setMarkers(props.locations, map);
     }
   }, []);
 
