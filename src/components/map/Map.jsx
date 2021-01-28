@@ -5,18 +5,49 @@ import './map.scss';
 const Map = props => {
   // const {} = props;
   useEffect(() => {
-    const uluru = { lat: -25.344, lng: 131.036 };
-    // The map, centered at Uluru
+    const centerCoordinates = { lat: props.centerLat, lng: props.centerLng };
+    // current centered coordinates
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: uluru,
+      zoom: 14,
+      center: centerCoordinates,
       streetViewControl: false
     });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-      position: uluru,
-      map: map,
-    });
+    const setMarkers = () => {
+      props.locations.forEach(location => {
+        setTimeout(function() {
+          const contentString = `
+           <div>
+             <h3>${location.title}</h3>
+             <p>some details</p>
+           </div>
+          `;
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: location.title
+          });
+
+          marker.addListener("click", () => {
+            infowindow.open(map, marker);
+          });
+        }, 200);
+      });
+    }
+
+
+    if (props.locations.length > 1) {
+      setTimeout(() => {
+        setMarkers();
+      }, 350);
+    } else {
+      setMarkers();
+    }
+
+
   }, []);
 
   return (
@@ -24,6 +55,24 @@ const Map = props => {
   );
 }
 
-Map.propTypes = {};
+Map.propTypes = {
+  locations: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      address: PropTypes.string,
+      cc: PropTypes.string,
+      city: PropTypes.string,
+      country: PropTypes.string,
+      crossStreet: PropTypes.string,
+      formattedAddress: PropTypes.arrayOf(PropTypes.string),
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+      postalCode: PropTypes.string,
+      state: PropTypes.string
+    })
+  ),
+  centerLat: PropTypes.number,
+  centerLng: PropTypes.number
+};
 
 export default Map;

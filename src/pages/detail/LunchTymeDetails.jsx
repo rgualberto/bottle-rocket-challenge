@@ -13,7 +13,14 @@ const LunchTymeDetails = props => {
   return (
     <div className="lunchTymeDetails">
       <div className="lunchTymeDetails__map">
-        <Map/>
+        <Map
+          locations={[{
+            title: restaurant.name,
+            ...restaurant.location
+          }]}
+          centerLat={restaurant.location.lat}
+          centerLng={restaurant.location.lng}
+        />
       </div>
 
       <div className="lunchTymeDetails__map-label">
