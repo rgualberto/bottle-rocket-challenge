@@ -15,8 +15,8 @@ import CompressionPlugin from 'compression-webpack-plugin';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 
-// should probably live in a general config file
-const googleMapsApiKey = "AIzaSyAirMRbrmnyy7HjO9GVVYHaGUdQSy069Ds";
+// app requires key. let it fail if no config file found
+import {googleMapsApiKey} from './mapsConfig.js';
 
 module.exports = (env = {}) => {
   const isProd = env.production;

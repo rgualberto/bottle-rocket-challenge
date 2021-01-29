@@ -38,3 +38,10 @@ $ npm run build
 // Run Tests
 $ npm run tests
 ```
+
+## Maps API Key
+In order to view the maps, you will need to supply a google api key. In the root of this project create a file called mapsConfig.js and place the following within:
+```javascript
+// mapsConfig.js
+export const googleMapsApiKey = "[my maps key]";
+```
