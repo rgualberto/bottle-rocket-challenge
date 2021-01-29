@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestaurantCard snapshot 1`] = `
+<button
+  className="restaurant-card"
+  onClick={[Function]}
+>
+  <img
+    className="restaurant-card__image"
+    src=""
+  />
+  <div
+    className="restaurant-card__info-wrap"
+  >
+    <div
+      className="restaurant-card__info"
+    >
+      <h2>
+        Test Restaurant
+      </h2>
+      <span>
+        Tasty
+      </span>
+    </div>
+  </div>
+</button>
+`;

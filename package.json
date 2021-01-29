@@ -1,7 +1,7 @@
 {
-  "name": "redux-bp",
+  "name": "lunch-tyme",
   "version": "1.0.0",
-  "description": "Super stripped down boilerplate for redux apps",
+  "description": "Lunch Tyme app for finding places to eat",
   "main": "index.js",
   "repository": "https://github.com/rgualberto/redux-bp",
   "author": "Rodrigo Gualberto <itzdrigz@gmail.com>",
@@ -56,6 +56,7 @@
     "@storybook/addon-knobs": "6.0.21",
     "@storybook/addon-toolbars": "^6.0.21",
     "@storybook/react": "^6.0.21",
+    "@testing-library/react": "^11.2.3",
     "autoprefixer": "^9.5.0",
     "axios": "0.21.1",
     "babel-core": "^7.0.0-bridge.0",
@@ -84,6 +85,7 @@
     "file-loader": "6.0.0",
     "html-webpack-plugin": "4.5.1",
     "html-webpack-template": "6.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "6.0.0",
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
@@ -116,16 +118,6 @@
     "workbox-webpack-plugin": "^6.0.2"
   },
   "jest": {
-    "collectCoverage": true,
-    "setupTestFrameworkScriptFile": "./config/jest.js",
-    "testPathIgnorePatterns": [
-      "public",
-      "config"
-    ],
-    "coveragePathIgnorePatterns": [
-      "public",
-      "config"
-    ],
     "moduleNameMapper": {
       "^.+\\.(css|less|scss)$": "identity-obj-proxy"
     }
