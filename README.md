@@ -9,9 +9,21 @@ Notes
   - missing proper assets for loading splash screen & icons
   - service workers precaching bundle but not assets/external requests
   - not served over https
+- A few super simple tests were written for components
+  - PageHeader includes dom existence checking & snapshots
+  - The rest only include snapshots
 
+## Browser Compatibility
+Tested on OSX 10.15.7:
+- Chrome 86.0.4240.183
+- Firefox 85.0
+- Safari 14.0
 
-## Installation && Usage
+Test on Oneplus 6T (Android 10):
+- Brave 1.19.86 (Chromium 88.0.4324.96)
+- Chrome 88.0.4324.93
+
+## Installation & Usage
 
 ```shell
 // install packages
@@ -19,4 +31,10 @@ $ npm install
 
 // Run local dev server (http://localhost:8080):
 $ npm run dev
+
+// Run build -- into dist dir - minified/gzipped assets, pwa assets (manifest/service worker)
+$ npm run build
+
+// Run Tests
+$ npm run tests
 ```

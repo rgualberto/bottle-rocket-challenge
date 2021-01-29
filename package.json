@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "Lunch Tyme app for finding places to eat",
   "main": "index.js",
-  "repository": "https://github.com/rgualberto/redux-bp",
+  "repository": "https://github.com/rgualberto/bottle-rocket-challenge",
   "author": "Rodrigo Gualberto <itzdrigz@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack --env production",
-    "lint:js": "eslint src/ --ext .jsx",
     "tests": "jest"
   },
   "devDependencies": {
